@@ -1,188 +1,205 @@
 <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CountDown Timer</title>
-    <style>
-      body {
-        background-color: #000000;
-        color: #37352f;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-      }
-      body {
-        margin: 0;
-      }
-      #timer {
-        height: calc(100vh - 40px);
-        display: flex;
-        flex-direction: row;
-        text-transform: uppercase;
-        font-size: .7em;
-        letter-spacing: 5px;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-
-    #compact{
-      text-transform: none;
-      font-size: .7em;
+<html>
+<head>
+    <title>Countdown Timer</title>
+    <!-- Include the necessary CSS and JavaScript libraries -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <style>   
+      /* Custom CSS styles for the input element */
+.datepicker{
+        position: absolute;
+        bottom: 20px; 
+        right: 20px;
+        padding-bottom: 30px;
+        display: block;
+        width: 160px;
+        padding: 0.375rem 0.75rem;
+        font-size: 1.07rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #111;
+        background-color: #fafafc;
+        background-clip: padding-box;
+        border: 3px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.375rem;
+        box-shadow: inset 0 1px 2px rgb(0 0 0 / 8%);
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
 
-      .years,
-      .months,
-      .weeks,
-      .days,
-      .hours,
-      .minutes,
-      .seconds {
-        padding: 20px 10px;
-      }
 
-      #years {
-        color: #37352F;
-      }
+  /* Custom CSS styles for the countdown timer */
+        #countdown {
+            height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: row;
+            text-transform: uppercase;
+            font-size: 0.7em;
+            letter-spacing: 5px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
 
-      #months {
-        color: #37352F;
-      }
+        #compact {
+            text-transform: none;
+            font-size: 0.7em;
+        }
 
-      #weeks {
-        color: #37352F;
-      }
+        .years,
+        .months,
+        .weeks,
+        .days,
+        .hours,
+        .minutes,
+        .seconds {
+            padding: 20px 10px;
+        }
 
-      #days {
-        color: #37352F;
-      }
+        #years {
+            color: #37352f;
+        }
 
-      #hours {
-        color: #37352F;
-      }
+        #months {
+            color: #37352f;
+        }
 
-      #minutes {
-        color: #37352F;
-      }
+        #weeks {
+            color: #37352f;
+        }
 
-      #seconds {
-        color: #37352F;
-      }
+        #days {
+            color: #37352f;
+        }
 
-      .nw-poweredby{
-        color: #37352f;
-        letter-spacing:normal;
-        z-index: 8; 
-        align-self: center; 
-        min-width: 90px; 
-        order: 2; 
-        min-height: 18px; 
-        height: max-content; 
-        flex-grow: 0; 
-        flex-shrink: 0; 
-        width: calc(100% - 20px); 
-        margin: 10px 10px 10px; 
-        padding-bottom: 30px;
-        white-space: pre-wrap; 
-        overflow: visible; 
-        word-break: break-word; 
-        line-height: 1.5; 
-        border-radius: 0px; 
-        opacity: 1; 
-        font-family: Helvetica; 
-        font-size: 9px; 
-        font-weight: 400; 
-        text-align: center;
-        cursor:pointer;
-      }
+        #hours {
+            color: #37352f;
+        }
 
-      .numbers {
-        font-weight: bold;
-        font-size: 3em;
-        text-align: center;
-      }
+        #minutes {
+            color: #37352f;
+        }
+
+        #seconds {
+            color: #37352f;
+        }
+
+        .numbers {
+            font-weight: bold;
+            font-size: 3em;
+            text-align: center;
+        }
     </style>
-  </head>
+</head>
+<body>
+    <!-- Input for Date Picker -->
+    <div >
+        <label for="datepicker" style="position:absolute; bottom:20px;padding-bottom: 10px; right:220px;">Select a date:</label>
+        <input type="text" id="datepicker" placeholder="Select a date">
+    </div>
 
-  <body class="">
-    <div id="timer">
-      <div class="weeks">
-        <div id="weeks" class="numbers"></div>
-        weeks
-      </div>
+    <!-- Countdown Timer -->
+    <div id="countdown">
+        <div class="years">
+            <div id="years" class="numbers">0</div>
+            <div class="compact">Years</div>
+        </div>
+        <div class="months">
+            <div id="months" class="numbers">0</div>
+            <div class="compact">Months</div>
+        </div>
+        <div class="weeks">
+            <div id="weeks" class="numbers">0</div>
+            <div class="compact">Weeks</div>
+        </div>
         <div class="days">
-          <div id="days" class="numbers"></div>
-          days
+            <div id="days" class="numbers">0</div>
+            <div class="compact">Days</div>
         </div>
         <div class="hours">
-          <div id="hours" class="numbers"></div>
-          hours
+            <div id="hours" class="numbers">0</div>
+            <div class="compact">Hours</div>
         </div>
         <div class="minutes">
-          <div id="minutes" class="numbers"></div>
-          minutes
+            <div id="minutes" class="numbers">0</div>
+            <div class="compact">Minutes</div>
         </div>
         <div class="seconds">
-          <div id="seconds" class="numbers"></div>
-          seconds
+            <div id="seconds" class="numbers">0</div>
+            <div class="compact">Seconds</div>
         </div>
     </div>
-    <h1 id="nw-ad" class="nw-poweredby">⚡ Powered by Notion Widgets</h1>
-  </body>
-  <script>
-    document.getElementById("nw-ad").addEventListener("click", openLink);
-    function openLink()
-    {
-      window.open("https://notion-widgets.com");
-    }
 
-    const year = new Date().getFullYear();
-    const myDate = new Date('2023-12-31T23:00:00.000Z');
-    const padLeft = (num) => {
-      if (String(num).length > 2) {
-        return num;
-      }
-      return String("00" + num).slice(-2);
-    }
+    <script>
+        // Get the input element and initialize the date picker
+        const datePicker = flatpickr("#datepicker", {
+            enableTime: false,
+            dateFormat: "Y-m-d",
+            altInput: true,
+            altFormat: "j F Y", //(h:S K)
+            altInputClass:"datepicker",
+            defaultDate: localStorage.getItem("selectedDate"), // Set the default date from local storage
+            onChange: updateCountdown
+        });
 
-    setInterval(function () {
-      const today = new Date().getTime();
-      const diff = ( myDate - today ) < 0 ? 0 : ( myDate - today );
+        // Function to update the countdown timer
+        function updateCountdown(selectedDates, dateStr) {
+            if (!dateStr) {
+                document.getElementById("countdown").textContent = "0 Days 0 Hours 0 Minutes 0 Seconds";
+                return;
+            }
 
-      const msecPerYears = 1000 * 60 * 60 * 24 * 7 * 4 * 12;
-      const msecPerMonths = 1000 * 60 * 60 * 24 * 7 * 4;
-      const msecPerWeeks = 1000 * 60 * 60 * 24 * 7;
-      const msecPerDays = 1000 * 60 * 60 * 24;
-      const msecPerHours = 1000 * 60 * 60;
-      const msecPerMinutes = 1000 * 60 * 60;
-      const msecPerSeconds = 1000 * 60;
+            const selectedDate = new Date(dateStr);
 
-        const weeks = padLeft(Math.floor(diff / (msecPerWeeks)));
-        const days = padLeft(Math.floor((diff % (msecPerDays * 7)) / msecPerDays));
-        const hours = padLeft(Math.floor((diff % (msecPerHours * 24)) / (msecPerMinutes)));
-        const minutes = padLeft(Math.floor((diff % (msecPerMinutes)) / (msecPerSeconds)));
-        const seconds = padLeft(Math.floor((diff % (msecPerSeconds)) / 1000));
+            // Function to update the countdown every second
+            function update() {
+                const now = new Date();
+                const timeDifference = selectedDate - now;
 
+                if (timeDifference <= 0) {
+                    clearInterval(interval); // Stop the countdown when time is up
+                    document.getElementById("countdown").textContent = "Time's Up!";
+                } else {
+                    const seconds = Math.floor(timeDifference / 1000);
+                    const minutes = Math.floor(seconds / 60);
+                    const hours = Math.floor(minutes / 60);
+                    const days = Math.floor(hours / 24);
+                    const weeks = Math.floor(days / 7);
+                    const months = Math.floor(days / 30);
+                    const years = Math.floor(days / 365);
 
+                    // Update the countdown elements
+                    document.getElementById("years").textContent = years;
+                    document.getElementById("months").textContent = months;
+                    document.getElementById("weeks").textContent = weeks;
+                    document.getElementById("days").textContent = days % 365;
+                    document.getElementById("hours").textContent = hours % 24;
+                    document.getElementById("minutes").textContent = minutes % 60;
+                    document.getElementById("seconds").textContent = seconds % 60;
+                }
+            }
 
-      if (true) {
-          document.getElementById("weeks").innerHTML = weeks;
-      }
+            // Update the countdown initially and then every second
+            update();
+            const interval = setInterval(update, 1000);
 
-      if (true) {
-          document.getElementById("days").innerHTML = days;
-      }
+            // Store the selected date in local storage
+            localStorage.setItem("selectedDate", dateStr);
+        }
 
-      if (true) {
-          document.getElementById("hours").innerHTML = hours;
-      }
-      
-      if (true) {
-          document.getElementById("minutes").innerHTML = minutes;
-      }
+        // Check if a date was previously selected and restore it from local storage
+        const storedDate = localStorage.getItem("selectedDate");
+        if (storedDate) {
+            datePicker.setDate(new Date(storedDate));
+            // Set the input field value using the stored date
+            document.getElementById("datepicker").value = storedDate;
+            // Trigger the countdown using the stored date
+            updateCountdown(null, storedDate);
+        }
+    </script>
+</body>
+</html>
 
-      if (true) {
-          document.getElementById("seconds").innerHTML = seconds;
-      }
-    }, 1000);
-  </script>
-  </html>
