@@ -1,0 +1,99 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://unpkg.com/@pqina/flip/dist/flip.min.css" rel="stylesheet">
+</head>
+<style>
+/* Hide the "Powered by PQINA" link */
+a[href="https://pqina.nl/?ref=credits"]
+{
+  display: none;
+}
+.body {
+  margin: 0px;
+}
+.tick {
+  text-align: center ;
+
+  white-space: nowrap;
+  font-family: arial, sans-serif;
+}
+
+.tick-flip,
+.tick-text-inline {
+  font-size: 2.5em;
+}
+
+.tick-label {
+  margin-top: 1em;
+  font-size: 1em;
+}
+
+.tick-char {
+  width: 1.5em;
+}
+
+.tick-text-inline {
+  display: inline-block;
+  text-align: center;
+  min-width: 1em;
+}
+
+.tick-text-inline + .tick-text-inline {
+  margin-left: -0.325em;
+}
+body {
+  background-color: rgb(254, 252, 255) !important;
+}
+.tick-flip-panel {
+  color: rgb(255, 255, 255) !important;
+}
+
+.tick-flip {
+  font-family: oswald-regular, sans-serif !important;
+}
+
+.tick-flip-panel-text-wrapper {
+  line-height: 1.5 !important;
+}
+</style>
+<body>
+  <div class="container">
+    <div class="tick" data-did-init="handleTickInit">
+
+      <div>
+        <!--data-layout="horizontal fit"-->
+
+        <span data-key="hours" data-transform="pad(00)" data-view="flip"></span>
+
+        <span data-view="text" data-key="sep" class="tick-text-inline"></span>
+
+        <span data-key="minutes" data-transform="pad(00)" data-view="flip"></span>
+
+        <!--<span data-view="text" data-key="sep" class="tick-text-inline"></span>
+
+        <span data-key="seconds" data-transform="pad(00)" data-view="flip"></span>-->
+
+      </div>
+
+    </div>
+    <script>
+      function handleTickInit(tick) {
+        // start interval (default is 1 second) and update clock with current time
+        Tick.helper.interval(function() {
+          var d = Tick.helper.date();
+          tick.value = {
+            sep: ':',
+            hours: d.getHours(),
+            minutes: d.getMinutes(),
+            seconds: d.getSeconds()
+          };
+        });
+      }
+    </script>
+  </div>
+  <script src="https://unpkg.com/@pqina/flip/dist/flip.min.js"></script>
+</body>
+
+</html>
