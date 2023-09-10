@@ -1,4 +1,8 @@
 <html>
+  <head>
+      <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://unpkg.com/@pqina/flip/dist/flip.min.css" rel="stylesheet">
   <style>
   /* Hide the "Powered by PQINA" link */
 a[href="https://pqina.nl/?ref=credits"]
@@ -147,13 +151,15 @@ a[href="https://pqina.nl/?ref=credits"]
   padding-inline-start: 40px;
 }
 </style>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://unpkg.com/@pqina/flip/dist/flip.min.css" rel="stylesheet">
+
 </head>
 
-<body>
+<body style="
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+">
   <div class="container">
     <div class="tick" data-value="0" data-did-init="handleTickInit">
 
@@ -182,7 +188,9 @@ a[href="https://pqina.nl/?ref=credits"]
       </div>
 
     </div>
-    <div class="tick-controls">
+  <div class="tick-controls" style="
+    padding-top: 26px;
+">
 
       <button type="button" data-action="start">start</button>
 
